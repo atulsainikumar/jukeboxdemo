@@ -83,6 +83,22 @@ export default function HomePage() {
           />
         </div>
 
+        {/* NOW PLAYING */}
+        <div className="bg-gradient-to-br from-[#1F2937] to-[#111827] rounded-2xl p-5 mb-6 border border-zinc-800 shadow-md">
+          <p className="text-xs uppercase text-zinc-400 mb-3 tracking-wider">
+            Now Playing
+          </p>
+          <div className="flex items-center gap-4">
+            <div className="h-14 w-14 bg-zinc-800 rounded-xl flex items-center justify-center">
+              <Music size={22} className="text-zinc-400" />
+            </div>
+            <div>
+              <p className="text-base font-medium">Song Title</p>
+              <p className="text-sm text-zinc-400">Artist Name</p>
+            </div>
+          </div>
+        </div>
+
         {/* SEARCH */}
         <div className="relative mb-4">
           <input
@@ -116,7 +132,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* RESULTS */}
+        {/* SEARCH RESULTS */}
         {showResults && (
           <div className="mb-8">
             <div className="bg-gradient-to-br from-[#1F2937] to-[#111827] rounded-2xl p-5 border border-zinc-700 shadow-lg">
@@ -233,7 +249,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* QUEUE LOCKED (Matching Screenshot) */}
+        {/* QUEUE LOCKED */}
         <div className="bg-gradient-to-br from-[#111827] to-[#0F172A] border border-zinc-700 rounded-2xl p-6 text-center shadow-lg">
           <div className="mb-4 text-3xl">🔒</div>
           <h3 className="text-lg font-semibold mb-2">Queue Locked</h3>
