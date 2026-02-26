@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dine & Tune",
-  description: "Smart Digital Jukebox System",
+  title: "Jukebox - Cafe Deja Vu",
+  description: "Smart Digital Jukebox System for cafe deja vu",
 };
 
 export default function RootLayout({
