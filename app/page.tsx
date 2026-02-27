@@ -25,6 +25,7 @@ export default function HomePage() {
   const [selectedSong, setSelectedSong] = useState<Song | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -50,24 +51,25 @@ export default function HomePage() {
   };
 
   const handleModeClick = (mode: string) => {
-    if (!selectedSong) {
-      setError("Please select a song first to continue.");
+  if (!selectedSong) {
+    setError("Please select a song first to continue.");
 
-      searchRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+    searchRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
 
-      setTimeout(() => {
-        searchRef.current?.focus();
-      }, 400);
+    setTimeout(() => {
+      searchRef.current?.focus();
+    }, 400);
 
-      setTimeout(() => setError(""), 3000);
-      return;
-    }
+    setTimeout(() => setError(""), 3000);
+    return;
+  }
 
-    alert(`${mode} selected for ${selectedSong.title}`);
-  };
+  // 🔥 Instead of alert → open popup
+  setSelectedPlan(mode);
+};
 
   return (
     <div className="min-h-screen bg-[#0B0F19] text-white">
@@ -267,6 +269,61 @@ export default function HomePage() {
         </div>
 
       </div>
+      {selectedPlan && (
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="bg-gradient-to-br from-[#1F2937] to-[#111827] w-[90%] max-w-md rounded-2xl p-6 border border-zinc-700 shadow-2xl">
+
+      <h2 className="text-xl font-semibold mb-4">
+        {selectedPlan} Plan Details
+      </h2>
+
+      <div className="mb-4 text-sm text-zinc-300 space-y-2">
+        {selectedPlan === "Normal" && (
+          <>
+            <p>💰 Charge: Free</p>
+            <p>• Standard queue</p>
+            <p>• Can be skipped anytime</p>
+            <p>• No queue visibility</p>
+          </>
+        )}
+
+        {selectedPlan === "Premium" && (
+          <>
+            <p>💰 Charge: ₹5</p>
+            <p>• Priority queue</p>
+            <p>• Skip protection (15s)</p>
+            <p>• See your queue position</p>
+          </>
+        )}
+
+        {selectedPlan === "Super Premium" && (
+          <>
+            <p>💰 Charge: ₹15</p>
+            <p>• Top priority</p>
+            <p>• Cannot be skipped</p>
+            <p>• Instant queue visibility</p>
+          </>
+        )}
+      </div>
+
+      <div className="flex justify-end gap-3 mt-6">
+        <button
+          onClick={() => setSelectedPlan(null)}
+          className="px-4 py-2 rounded-lg border border-zinc-600 text-sm hover:bg-zinc-800 transition"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={() => alert("Proceed to payment")}
+          className="px-4 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-black text-sm font-semibold transition"
+        >
+          Proceed to Payment
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }
