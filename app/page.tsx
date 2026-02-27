@@ -114,7 +114,7 @@ export default function HomePage() {
           <button
             onClick={handleSearch}
             disabled={isLoading}
-            className="absolute right-2 top-1.5 bg-yellow-500 hover:bg-yellow-400 text-black text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center justify-center min-w-[70px]"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-400 disabled:bg-yellow-300 text-black text-xs font-semibold px-3 py-1.5 rounded-lg transition flex items-center justify-center min-w-[70px]"
           >
             {isLoading ? (
               <Loader2 size={16} className="animate-spin" />
